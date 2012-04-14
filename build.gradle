@@ -6,4 +6,7 @@ repositories {
 
 dependencies {
     groovy 'org.codehaus.groovy:groovy:1.8.6'
+    compile 'commons-lang:commons-lang:2.6',
+            'commons-io:commons-io:2.2'
+    testCompile 'org.testng:testng:6.0.1'
 }
