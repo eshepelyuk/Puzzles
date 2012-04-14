@@ -1,21 +1,15 @@
-import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 
 public class ExtractConfigTest {
 
     ExtractConfig config
 
-    @BeforeMethod
-    void setUp() throws Exception {
-        config = new ExtractConfig()
-    }
-
     @Test
     void whenParseThenLabelStoredToMap() {
         //given
         StringReader inp = new StringReader("ID1\tMYID1\n")
         //when
-        config.parse(inp)
+        config = ExtractConfig.fromReader(inp)
         //then
         assert config.transformed("ID1") == "MYID1"
         assert config.transformed("ID2") == null
@@ -26,7 +20,7 @@ public class ExtractConfigTest {
         //given
         StringReader inp = new StringReader("ID1\t\tMYID1\n")
         //when
-        config.parse(inp)
+        config = ExtractConfig.fromReader(inp)
         //then
         assert config.transformed("ID1") == "MYID1"
     }
@@ -36,7 +30,7 @@ public class ExtractConfigTest {
         //given
         StringReader inp = new StringReader("")
         //when
-        config.parse(inp)
+        config = ExtractConfig.fromReader(inp)
         //then
         assert config.transformed("ID1") == null
     }
@@ -46,7 +40,7 @@ public class ExtractConfigTest {
         //given
         StringReader inp = new StringReader("ID1\tMYID1\tANOTHER\t\t\n")
         //when
-        config.parse(inp)
+        config = ExtractConfig.fromReader(inp)
         //then
         assert config.transformed("ID1") == "MYID1"
     }

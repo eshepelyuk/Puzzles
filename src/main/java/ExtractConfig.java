@@ -9,14 +9,13 @@ import static org.apache.commons.io.IOUtils.lineIterator;
 
 public class ExtractConfig {
 
-    private Map<String, String> cfgMap = new HashMap<String, String>();
-
     /**
-     * parse labels config and closes file
+     * Created and initializes new config from reader. Close file after parse.
      *
      * @param reader
      */
-    public void parse(Reader reader) {
+    public static ExtractConfig fromReader(Reader reader) {
+        Map<String, String> cfgMap = new HashMap<String, String>();
         LineIterator it = lineIterator(reader);
         try {
             while (it.hasNext()) {
@@ -28,6 +27,13 @@ public class ExtractConfig {
         } finally {
             LineIterator.closeQuietly(it);
         }
+        return new ExtractConfig(cfgMap);
+    }
+
+    private final Map<String, String> cfgMap;
+
+    public ExtractConfig(Map<String, String> cfgMap) {
+        this.cfgMap = cfgMap;
     }
 
     public String transformed(String label) {
