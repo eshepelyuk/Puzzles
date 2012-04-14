@@ -1,13 +1,13 @@
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 
-public class LabelConfigTest {
+public class ExtractConfigTest {
 
-    LabelConfig columnConfig
+    ExtractConfig config
 
     @BeforeMethod
     void setUp() throws Exception {
-        columnConfig = new LabelConfig()
+        config = new ExtractConfig()
     }
 
     @Test
@@ -15,10 +15,10 @@ public class LabelConfigTest {
         //given
         StringReader inp = new StringReader("ID1\tMYID1\n")
         //when
-        columnConfig.parse(inp)
+        config.parse(inp)
         //then
-        assert columnConfig.transformedLabel("ID1") == "MYID1"
-        assert columnConfig.transformedLabel("ID2") == null
+        assert config.transformed("ID1") == "MYID1"
+        assert config.transformed("ID2") == null
     }
 
     @Test
@@ -26,9 +26,9 @@ public class LabelConfigTest {
         //given
         StringReader inp = new StringReader("ID1\t\tMYID1\n")
         //when
-        columnConfig.parse(inp)
+        config.parse(inp)
         //then
-        assert columnConfig.transformedLabel("ID1") == "MYID1"
+        assert config.transformed("ID1") == "MYID1"
     }
 
     @Test
@@ -36,9 +36,9 @@ public class LabelConfigTest {
         //given
         StringReader inp = new StringReader("")
         //when
-        columnConfig.parse(inp)
+        config.parse(inp)
         //then
-        assert columnConfig.transformedLabel("ID1") == null
+        assert config.transformed("ID1") == null
     }
 
     @Test
@@ -46,8 +46,8 @@ public class LabelConfigTest {
         //given
         StringReader inp = new StringReader("ID1\tMYID1\tANOTHER\t\t\n")
         //when
-        columnConfig.parse(inp)
+        config.parse(inp)
         //then
-        assert columnConfig.transformedLabel("ID1") == "MYID1"
+        assert config.transformed("ID1") == "MYID1"
     }
 }

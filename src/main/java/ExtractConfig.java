@@ -7,9 +7,9 @@ import java.util.Map;
 
 import static org.apache.commons.io.IOUtils.lineIterator;
 
-public class LabelConfig {
+public class ExtractConfig {
 
-    private Map<String, String> labels = new HashMap<String, String>();
+    private Map<String, String> cfgMap = new HashMap<String, String>();
 
     /**
      * parse labels config and closes file
@@ -22,7 +22,7 @@ public class LabelConfig {
             while (it.hasNext()) {
                 String[] arr = StringUtils.split(it.nextLine(), '\t');
                 if (arr.length >= 2) {
-                    labels.put(arr[0], arr[1]);
+                    cfgMap.put(arr[0], arr[1]);
                 }
             }
         } finally {
@@ -30,7 +30,7 @@ public class LabelConfig {
         }
     }
 
-    public String transformedLabel(String label) {
-        return labels.get(label);
+    public String transformed(String label) {
+        return cfgMap.get(label);
     }
 }
