@@ -7,9 +7,10 @@ repositories {
 dependencies {
     groovy 'org.codehaus.groovy:groovy:1.8.6'
     compile 'commons-lang:commons-lang:2.6',
-            'commons-io:commons-io:2.2'
-    testCompile 'org.testng:testng:6.0.1',
-            'org.mockito:mockito-core:1.9.0',
+            'commons-io:commons-io:2.2',
             "org.hamcrest:hamcrest-core:1.2.1",
             "org.hamcrest:hamcrest-library:1.2.1"
+
+    testCompile 'org.testng:testng:6.0.1',
+            'org.mockito:mockito-core:1.9.0'
 }
