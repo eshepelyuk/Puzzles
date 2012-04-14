@@ -8,7 +8,6 @@ import java.util.Map;
 import static org.apache.commons.io.IOUtils.lineIterator;
 
 public class ExtractConfig {
-
     /**
      * Created and initializes new config from reader. Close file after parse.
      *
@@ -21,12 +20,14 @@ public class ExtractConfig {
             while (it.hasNext()) {
                 String[] arr = StringUtils.split(it.nextLine(), '\t');
                 if (arr.length >= 2) {
+                    Main.LOG.warn("Сonfig parse: invalid line {}", arr);
                     cfgMap.put(arr[0], arr[1]);
                 }
             }
         } finally {
             LineIterator.closeQuietly(it);
         }
+        Main.LOG.info("Сonfig parse: detected {} mappings", cfgMap.size());
         return new ExtractConfig(cfgMap);
     }
 

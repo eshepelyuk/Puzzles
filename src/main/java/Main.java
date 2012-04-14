@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +10,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class Main {
+
+    public static Logger LOG = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) throws IOException {
         assertThat(args.length, is(3));
 

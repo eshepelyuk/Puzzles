@@ -34,32 +34,40 @@ public class Translator {
         }
     }
 
+    private String[] processHeader(LineIterator it, Writer output) throws IOException {
+        String[] headerLabels = null;
+        List<String> list = new LinkedList<String>();
+
+        if (it.hasNext()) {
+            headerLabels = readLine(it);
+            if (headerLabels != null) {
+                for (int i = 0; i < headerLabels.length; i++) {
+                    String transformed = labelConfig.transformed(headerLabels[i]);
+                    if (transformed != null) {
+                        list.add(transformed);//translating column labels
+                    }
+                }
+                writeLine(output, list);
+            }
+            Main.LOG.info("Parsed header: detected {} columns", headerLabels.length);
+        }
+        return headerLabels;
+    }
+
     public void translate(Reader input, Writer output) throws IOException {
         LineIterator it = lineIterator(input);
-        String rowId = null;
-
-        String[] arr = null;
-        List<String> list = new LinkedList<String>();
 
         String[] headerLabels = null;
 
+        String rowId = null;
+        String[] arr = null;
+        List<String> list = new LinkedList<String>();
         try {
-            if (it.hasNext()) {
-                headerLabels = readLine(it);
-                if (headerLabels != null) {
-                    for (int i = 0; i < headerLabels.length; i++) {
-                        String transformed = labelConfig.transformed(headerLabels[i]);
-                        if (transformed != null) {
-                            list.add(transformed);//translating column labels
-                        }
-                    }
-                    writeLine(output, list);
-                }
-            }
+            headerLabels = processHeader(it, output);
             while (it.hasNext()) {
                 arr = readLine(it);
                 if (arr == null || arr.length < headerLabels.length) {
-                    //TODO logging
+                    Main.LOG.warn("Skipped line - number of records less than number of columns");
                     continue;
                 }
                 rowId = rowConfig.transformed(arr[0]);
