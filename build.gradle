@@ -6,8 +6,8 @@ repositories {
 
 dependencies {
     groovy 'org.codehaus.groovy:groovy:1.8.6'
-    compile 'commons-lang:commons-lang:2.6',
-            'commons-io:commons-io:2.2',
+    compile 'org.apache.commons:commons-lang3:3.1',
+            'commons-io:commons-io:2.3',
             "org.hamcrest:hamcrest-core:1.2.1",
             "org.hamcrest:hamcrest-library:1.2.1",
             "ch.qos.logback:logback-classic:1.0.1"

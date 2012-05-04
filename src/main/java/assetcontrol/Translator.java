@@ -2,7 +2,7 @@ package assetcontrol;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.apache.commons.io.IOUtils.lineIterator;
-import static org.apache.commons.lang.StringUtils.split;
+import static org.apache.commons.lang3.StringUtils.split;
 
 public class Translator {
     private ExtractConfig labelConfig;
