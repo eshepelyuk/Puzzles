@@ -1,4 +1,7 @@
+package assetcontrol
+
 import org.testng.annotations.Test
+import assetcontrol.ExtractConfig
 
 public class ExtractConfigTest {
 

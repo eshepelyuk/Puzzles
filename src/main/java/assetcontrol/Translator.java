@@ -1,3 +1,5 @@
+package assetcontrol;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
@@ -41,15 +43,15 @@ public class Translator {
         if (it.hasNext()) {
             headerLabels = readLine(it);
             if (headerLabels != null) {
-                for (int i = 0; i < headerLabels.length; i++) {
-                    String transformed = labelConfig.transformed(headerLabels[i]);
+                for (String headerLabel : headerLabels) {
+                    String transformed = labelConfig.transformed(headerLabel);
                     if (transformed != null) {
                         list.add(transformed);//translating column labels
                     }
                 }
                 writeLine(output, list);
             }
-            Main.LOG.info("Parsed header: detected {} columns", headerLabels.length);
+            Main.LOG.info("Parsed header: detected {} columns", headerLabels == null ? 0 : headerLabels.length);
         }
         return headerLabels;
     }

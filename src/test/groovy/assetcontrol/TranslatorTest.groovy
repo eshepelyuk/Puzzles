@@ -1,3 +1,5 @@
+package assetcontrol
+
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.stubbing.Answer
 import org.testng.annotations.BeforeMethod
@@ -6,6 +8,8 @@ import org.testng.annotations.Test
 import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
+import assetcontrol.ExtractConfig
+import assetcontrol.Translator
 
 public class TranslatorTest {
 
