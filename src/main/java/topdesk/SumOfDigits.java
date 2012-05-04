@@ -25,8 +25,8 @@ public class SumOfDigits {
      * @throws IllegalArgumentException if {@code number} is smaller than zero
      */
     public static int sumOfSum(long number) {
-        long num = number;
-        String numAsStr = null;
+        long num;
+        String numAsStr;
 
         while (number > 9) {
             numAsStr = String.valueOf(number);
