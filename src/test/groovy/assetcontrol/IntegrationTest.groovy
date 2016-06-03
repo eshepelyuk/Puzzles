@@ -11,7 +11,7 @@ class IntegrationTest {
     void withRealFiles() {
         Writer w = new StringWriter()
         System.setOut(new PrintStream(new WriterOutputStream(w)))
-        Main.main("src/test/resources/assetcontrol/label.txt", "src/test/resources/assetcontrol/row.txt", "src/test/resources/assetcontrol/input.txt")
+        Main.main("src/test/resources/assetcontrol/label.txt", "src/test/resources/assetcontrol/row.txt", "src/test/resources/assetcontrol/str.txt")
         w.toString().readLines().eachWithIndex {item, cnt ->
             assert item == EXPECTED[cnt]
         }
