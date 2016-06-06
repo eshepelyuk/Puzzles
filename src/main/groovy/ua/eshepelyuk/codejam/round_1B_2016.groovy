@@ -52,14 +52,11 @@ class round_1B_2016 {
 
     static String gettingTheDigits(String input) {
         SETTINGS.inject(new DigitAcc(input, [])) { DigitAcc acc, DigitSetting item ->
-            if (item.marker && acc.str.contains(item.marker)) {
+            if (acc.str.contains(item.marker)) {
                 def itemAcc = reduceStringByDigit(acc.str, item)
                 return new DigitAcc(itemAcc.str, acc.digits + itemAcc.digits)
-            } else {
-                return acc
             }
-        }.digits.sort(false) { a, b -> a[0] <=> b[0] }.inject("") { acc, item ->
-            "$acc${item[0] * item[1]}"
-        }
+            return acc
+        }.digits.sort(false) { a, b -> a[0] <=> b[0] }.inject("") { acc, item -> "$acc${item[0] * item[1]}" }
     }
 }
