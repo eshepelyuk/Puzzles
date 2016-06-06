@@ -37,7 +37,7 @@ class round_1B_2016 {
                            new DigitSetting("FIVE", "5", "F"),
                            new DigitSetting("SEVEN", "7", "S"),
 
-                           new DigitSetting("NINE", "9", null)
+                           new DigitSetting("NINE", "9", "N")
     ]
 
     static def reduceStringByDigit(String s, DigitSetting digitSetting) {
@@ -52,7 +52,7 @@ class round_1B_2016 {
 
     static String gettingTheDigits(String input) {
         SETTINGS.inject(new DigitAcc(input, [])) { DigitAcc acc, DigitSetting item ->
-            if (item.marker && acc.str.contains(item.marker) || !item.marker) {
+            if (item.marker && acc.str.contains(item.marker)) {
                 def itemAcc = reduceStringByDigit(acc.str, item)
                 return new DigitAcc(itemAcc.str, acc.digits + itemAcc.digits)
             } else {
